@@ -12,16 +12,9 @@ class AuthView extends StatefulWidget {
 }
 
 class _AuthViewState extends State<AuthView> {
-  final _formKey = GlobalKey<FormState>();
-  final _usernameController = TextEditingController();
-  final _passwordController = TextEditingController();
-
-  @override
-  void dispose() {
-    _usernameController.dispose();
-    _passwordController.dispose();
-    super.dispose();
-  }
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  String? _username;
+  String? _password;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +39,6 @@ class _AuthViewState extends State<AuthView> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextFormField(
-                    controller: _usernameController,
                     decoration: const InputDecoration(
                       labelText: 'Username',
                     ),
@@ -56,9 +48,11 @@ class _AuthViewState extends State<AuthView> {
                       }
                       return null;
                     },
+                    onSaved: (newUsername) {
+                      _username = newUsername!.trim();
+                    },
                   ),
                   TextFormField(
-                    controller: _passwordController,
                     obscureText: true,
                     decoration: const InputDecoration(
                       labelText: 'Password',
@@ -68,6 +62,9 @@ class _AuthViewState extends State<AuthView> {
                         return 'Please enter your password';
                       }
                       return null;
+                    },
+                    onSaved: (newPassword) {
+                      _password = newPassword!.trim();
                     },
                   ),
                   BlocBuilder<AuthCubit, AuthState>(
@@ -81,8 +78,8 @@ class _AuthViewState extends State<AuthView> {
 
                               final UserCredentials userCredentials =
                                   UserCredentials(
-                                username: _usernameController.text,
-                                password: _passwordController.text,
+                                username: _username!,
+                                password: _password!,
                               );
                               context.read<AuthCubit>().auth(userCredentials);
                             }
