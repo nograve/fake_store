@@ -41,6 +41,9 @@ dependencies:
   json_annotation: ^4.8.0
   retrofit: ^4.0.1
   dio: ^5.0.1
+  get_it: ^7.2.0
+  flutter_bloc: ^8.1.2
+  fluttertoast: ^8.2.1
 
 dev_dependencies:
   flutter_test:

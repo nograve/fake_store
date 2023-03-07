@@ -1,7 +1,9 @@
-import 'package:fake_store/home/models/product.dart';
-import 'package:fake_store/auth/models/user_credentials.dart';
-import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
+import 'package:fake_store/auth/models/token.dart';
+import 'package:retrofit/retrofit.dart';
+
+import '../../auth/models/user_credentials.dart';
+import '../../home/models/product.dart';
 
 part 'fake_store_client.g.dart';
 
@@ -13,5 +15,5 @@ abstract class FakeStoreClient {
   Future<List<Product>> getProducts();
 
   @POST('/auth/login')
-  Future<String?> auth(@Body() UserCredentials userCredentials);
+  Future<Token?> auth(@Body() UserCredentials userCredentials);
 }
