@@ -47,6 +47,25 @@ class ProductListTile extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   '${product.rating!.rate!}/5.0',
+                  style: const TextStyle(
+                    fontSize: 8,
+                    fontWeight: FontWeight.w200,
+                  ),
+                ),
+              )
+            : const SizedBox.shrink(),
+        product.price != null
+            ? Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8.0,
+                ),
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '\$ ${product.price}',
+                  style: const TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 12,
+                  ),
                 ),
               )
             : const SizedBox.shrink(),
