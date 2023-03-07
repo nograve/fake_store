@@ -15,6 +15,7 @@ class _AuthViewState extends State<AuthView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   String? _username;
   String? _password;
+  bool _passwordVisible = false;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,7 @@ class _AuthViewState extends State<AuthView> {
                 children: [
                   TextFormField(
                     decoration: const InputDecoration(
-                      labelText: 'Username',
+                      labelText: 'User name',
                     ),
                     validator: (username) {
                       if (username != null && username.isEmpty) {
@@ -53,9 +54,22 @@ class _AuthViewState extends State<AuthView> {
                     },
                   ),
                   TextFormField(
-                    obscureText: true,
-                    decoration: const InputDecoration(
+                    obscureText: !_passwordVisible,
+                    decoration: InputDecoration(
                       labelText: 'Password',
+                      suffixIcon: IconButton(
+                        onPressed: () {
+                          setState(() {
+                            _passwordVisible = !_passwordVisible;
+                          });
+                        },
+                        icon: Icon(
+                          _passwordVisible
+                              ? Icons.visibility
+                              : Icons.visibility_off,
+                          color: Colors.grey,
+                        ),
+                      ),
                     ),
                     validator: (password) {
                       if (password != null && password.isEmpty) {
