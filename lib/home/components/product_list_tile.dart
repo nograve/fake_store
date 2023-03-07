@@ -22,8 +22,8 @@ class ProductListTile extends StatelessWidget {
           product.image != null
               ? Container(
                   alignment: Alignment.center,
-                  width: 100.0,
-                  height: 100.0,
+                  width: 125.0,
+                  height: 125.0,
                   decoration: BoxDecoration(
                     image: DecorationImage(
                       fit: BoxFit.cover,
@@ -33,18 +33,24 @@ class ProductListTile extends StatelessWidget {
                 )
               : const SizedBox.shrink(),
           product.title != null
-              ? Text(
-                  product.title!,
-                  style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
+              ? Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    product.title!,
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 )
               : const SizedBox.shrink(),
           product.rating!.rate != null
-              ? Text(
-                  '${product.rating!.rate!}/5.0',
+              ? Container(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    '${product.rating!.rate!}/5.0',
+                  ),
                 )
               : const SizedBox.shrink(),
         ],
