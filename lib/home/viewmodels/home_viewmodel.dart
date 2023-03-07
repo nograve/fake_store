@@ -1,4 +1,4 @@
-import 'package:fake_store/home/repositories/home_repo.dart';
+import '../repositories/home_repo.dart';
 import 'package:flutter/foundation.dart';
 
 import '../models/product.dart';

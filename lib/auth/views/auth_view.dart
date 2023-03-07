@@ -56,6 +56,7 @@ class _AuthViewState extends State<AuthView> {
                           vertical: 8.0,
                         ),
                         child: TextFormField(
+                          key: const Key('username_field'),
                           decoration: const InputDecoration(
                             enabledBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
@@ -91,6 +92,7 @@ class _AuthViewState extends State<AuthView> {
                           vertical: 8.0,
                         ),
                         child: TextFormField(
+                          key: const Key('password_field'),
                           obscureText: !_passwordVisible,
                           decoration: InputDecoration(
                             enabledBorder: const UnderlineInputBorder(
@@ -143,6 +145,7 @@ class _AuthViewState extends State<AuthView> {
                                 vertical: 50.0,
                               ),
                               child: ElevatedButton(
+                                key: const Key('submit_button'),
                                 style: ButtonStyle(
                                   minimumSize: MaterialStatePropertyAll(
                                     Size(

@@ -1,9 +1,8 @@
-import '../models/token.dart';
-
-import '../repositories/auth_repo.dart';
 import 'package:flutter/foundation.dart';
 
+import '../models/token.dart';
 import '../models/user_credentials.dart';
+import '../repositories/auth_repo.dart';
 
 class AuthViewModel extends ChangeNotifier {
   AuthViewModel({

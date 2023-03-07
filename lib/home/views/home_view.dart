@@ -1,16 +1,32 @@
-import 'package:fake_store/home/components/home_title.dart';
-import 'package:fake_store/home/components/home_title_description.dart';
-import 'package:fake_store/home/components/product_list_tile.dart';
-import 'package:fake_store/home/repositories/home_repo.dart';
-import 'package:fake_store/home/viewmodels/home_viewmodel.dart';
+import '../components/home_title.dart';
+import '../components/home_title_description.dart';
+import '../components/product_list_tile.dart';
+import '../repositories/home_repo.dart';
+import '../viewmodels/home_viewmodel.dart';
 import 'package:flutter/material.dart';
+import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../models/product.dart';
 
-class HomeView extends StatelessWidget {
-  HomeView({super.key});
+// TODO: Add state management to Home View
 
-  final HomeViewModel homeViewModel = HomeViewModel(homeRepo: HomeRepoImpl());
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
+
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final HomeViewModel _homeViewModel = HomeViewModel(homeRepo: HomeRepoImpl());
+
+  final RefreshController _refreshController =
+      RefreshController(initialRefresh: false);
+
+  void _onLoading() {
+    if (mounted) setState(() {});
+    _refreshController.loadComplete();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -35,48 +51,55 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32.0),
-            child: HomeTitle(),
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 32.0),
-            child: HomeTitleDescription(),
-          ),
-          FutureBuilder(
-            future: homeViewModel.getProducts(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                final List<Product> products = snapshot.data!;
-                return Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
-                    child: GridView.builder(
-                      gridDelegate:
-                          const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200.0,
-                        mainAxisExtent: 275.0,
-                        childAspectRatio: 1.5,
-                        mainAxisSpacing: 20.0,
-                        crossAxisSpacing: 20.0,
+      body: SmartRefresher(
+        controller: _refreshController,
+        enablePullDown: true,
+        enablePullUp: true,
+        header: const WaterDropHeader(),
+        onLoading: _onLoading,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32.0),
+              child: HomeTitle(),
+            ),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 32.0),
+              child: HomeTitleDescription(),
+            ),
+            FutureBuilder(
+              future: _homeViewModel.getProducts(),
+              builder: (context, snapshot) {
+                if (snapshot.hasData) {
+                  final List<Product> products = snapshot.data!;
+                  return Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithMaxCrossAxisExtent(
+                          maxCrossAxisExtent: 200.0,
+                          mainAxisExtent: 275.0,
+                          childAspectRatio: 1.5,
+                          mainAxisSpacing: 20.0,
+                          crossAxisSpacing: 20.0,
+                        ),
+                        shrinkWrap: true,
+                        itemCount: products.length,
+                        itemBuilder: (context, index) {
+                          return ProductListTile(product: products[index]);
+                        },
                       ),
-                      shrinkWrap: true,
-                      itemCount: products.length,
-                      itemBuilder: (context, index) {
-                        return ProductListTile(product: products[index]);
-                      },
                     ),
-                  ),
-                );
-              } else {
-                return const CircularProgressIndicator();
-              }
-            },
-          ),
-        ],
+                  );
+                } else {
+                  return const CircularProgressIndicator();
+                }
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

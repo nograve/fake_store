@@ -7,6 +7,8 @@ import 'package:get_it/get_it.dart';
 
 import 'shared/services/fake_store_client.dart';
 
+// TODO: Add more tests
+
 void main() {
   final dio = Dio();
   GetIt.instance.registerSingleton<FakeStoreClient>(FakeStoreClient(dio));
@@ -41,7 +43,9 @@ class MyApp extends StatelessWidget {
       initialRoute: 'auth',
       routes: {
         'auth': (context) => const AuthView(),
-        'home': (context) => HomeView(),
+        'home': (context) => const HomeView(
+              key: Key('home_view'),
+            ),
       },
     );
   }

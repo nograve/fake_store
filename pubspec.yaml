@@ -44,6 +44,7 @@ dependencies:
   get_it: ^7.2.0
   flutter_bloc: ^8.1.2
   fluttertoast: ^8.2.1
+  pull_to_refresh: ^2.0.0
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +59,8 @@ dev_dependencies:
   freezed: ^2.3.2
   json_serializable: ^6.6.1
   retrofit_generator: ^5.0.0
+  integration_test:
+    sdk: flutter
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
