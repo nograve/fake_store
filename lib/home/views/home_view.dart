@@ -19,14 +19,19 @@ class HomeView extends StatelessWidget {
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0.0,
-        leading: IconButton(
-          onPressed: () => Navigator.popAndPushNamed(
-            context,
-            'auth',
+        leading: Padding(
+          padding: const EdgeInsets.symmetric(
+            horizontal: 16.0,
           ),
-          icon: const Icon(
-            Icons.logout,
-            size: 40.0,
+          child: IconButton(
+            onPressed: () => Navigator.popAndPushNamed(
+              context,
+              'auth',
+            ),
+            icon: const Icon(
+              Icons.logout,
+              size: 40.0,
+            ),
           ),
         ),
       ),
@@ -52,10 +57,11 @@ class HomeView extends StatelessWidget {
                     child: GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithMaxCrossAxisExtent(
-                        maxCrossAxisExtent: 200,
-                        mainAxisExtent: 225,
-                        childAspectRatio: 3 / 2,
-                        mainAxisSpacing: 20,
+                        maxCrossAxisExtent: 200.0,
+                        mainAxisExtent: 225.0,
+                        childAspectRatio: 1.5,
+                        mainAxisSpacing: 20.0,
+                        crossAxisSpacing: 20.0,
                       ),
                       shrinkWrap: true,
                       itemCount: products.length,

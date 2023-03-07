@@ -14,47 +14,43 @@ class ProductListTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.6,
-      height: MediaQuery.of(context).size.width * 0.6,
-      child: Column(
-        children: [
-          product.image != null
-              ? Container(
-                  alignment: Alignment.center,
-                  width: 125.0,
-                  height: 125.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      fit: BoxFit.cover,
-                      image: NetworkImage(product.image!),
-                    ),
+    return Column(
+      children: [
+        product.image != null
+            ? Container(
+                alignment: Alignment.center,
+                width: 125.0,
+                height: 125.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    fit: BoxFit.cover,
+                    image: NetworkImage(product.image!),
                   ),
-                )
-              : const SizedBox.shrink(),
-          product.title != null
-              ? Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    product.title!,
-                    style: const TextStyle(
-                      fontFamily: 'Poppins',
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                    ),
+                ),
+              )
+            : const SizedBox.shrink(),
+        product.title != null
+            ? Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  product.title!,
+                  style: const TextStyle(
+                    fontFamily: 'Poppins',
+                    fontSize: 12,
+                    fontWeight: FontWeight.bold,
                   ),
-                )
-              : const SizedBox.shrink(),
-          product.rating!.rate != null
-              ? Container(
-                  alignment: Alignment.centerLeft,
-                  child: Text(
-                    '${product.rating!.rate!}/5.0',
-                  ),
-                )
-              : const SizedBox.shrink(),
-        ],
-      ),
+                ),
+              )
+            : const SizedBox.shrink(),
+        product.rating!.rate != null
+            ? Container(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  '${product.rating!.rate!}/5.0',
+                ),
+              )
+            : const SizedBox.shrink(),
+      ],
     );
   }
 }
