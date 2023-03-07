@@ -1,7 +1,7 @@
-import 'package:fake_store/auth/components/app_logo.dart';
-import 'package:fake_store/auth/cubit/auth_cubit.dart';
-import 'package:fake_store/auth/models/user_credentials.dart';
-import 'package:fake_store/shared/utils/color_primary_value.dart';
+import '../components/app_logo.dart';
+import '../cubit/auth_cubit.dart';
+import '../models/user_credentials.dart';
+import '../../shared/utils/color_primary_value.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -31,7 +31,8 @@ class _AuthViewState extends State<AuthView> {
                 Fluttertoast.showToast(msg: 'Success!');
                 Navigator.popAndPushNamed(context, 'home');
               },
-              failure: () => Fluttertoast.showToast(msg: 'Failed to log in.'),
+              failure: (String errorMsg) =>
+                  Fluttertoast.showToast(msg: errorMsg),
               orElse: () {},
             );
           },

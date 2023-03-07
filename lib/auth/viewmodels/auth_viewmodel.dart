@@ -1,4 +1,4 @@
-import 'package:fake_store/auth/models/token.dart';
+import '../models/token.dart';
 
 import '../repositories/auth_repo.dart';
 import 'package:flutter/foundation.dart';

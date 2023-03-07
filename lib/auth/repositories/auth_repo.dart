@@ -1,4 +1,4 @@
-import 'package:fake_store/auth/models/token.dart';
+import '../models/token.dart';
 
 import '../models/user_credentials.dart';
 import '../../shared/services/fake_store_client.dart';

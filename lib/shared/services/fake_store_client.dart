@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:fake_store/auth/models/token.dart';
+import '../../auth/models/token.dart';
 import 'package:retrofit/retrofit.dart';
 
 import '../../auth/models/user_credentials.dart';

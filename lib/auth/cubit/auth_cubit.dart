@@ -1,4 +1,4 @@
-import 'package:fake_store/auth/models/token.dart';
+import '../models/token.dart';
 
 import '../models/user_credentials.dart';
 import '../repositories/auth_repo.dart';
@@ -20,10 +20,10 @@ class AuthCubit extends Cubit<AuthState> {
       if (token != null) {
         emit(const AuthState.success());
       } else {
-        throw 'Failed to log in.';
+        throw 'Failed to log in. Wrong username or password.';
       }
     } catch (e) {
-      emit(const AuthState.failure());
+      emit(AuthState.failure(e.toString()));
     }
   }
 }

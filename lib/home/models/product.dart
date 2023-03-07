@@ -12,11 +12,21 @@ class Product with _$Product {
     required double? price,
     required String? description,
     required String? category,
-    required String? imageUrl,
-    required double? rate,
+    required String? image,
+    required Rating? rating,
     required int? count,
   }) = _Product;
 
   factory Product.fromJson(Map<String, Object?> json) =>
       _$ProductFromJson(json);
+}
+
+@freezed
+class Rating with _$Rating {
+  const factory Rating({
+    required double? rate,
+    required double? count,
+  }) = _Rating;
+
+  factory Rating.fromJson(Map<String, Object?> json) => _$RatingFromJson(json);
 }

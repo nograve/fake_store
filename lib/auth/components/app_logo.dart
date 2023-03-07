@@ -10,7 +10,6 @@ class AppLogo extends StatelessWidget {
       style: TextStyle(
         fontFamily: 'Prata',
         fontSize: 46.48,
-        fontWeight: FontWeight.w500,
       ),
     );
   }

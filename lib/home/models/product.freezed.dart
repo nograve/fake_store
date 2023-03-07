@@ -25,8 +25,8 @@ mixin _$Product {
   double? get price => throw _privateConstructorUsedError;
   String? get description => throw _privateConstructorUsedError;
   String? get category => throw _privateConstructorUsedError;
-  String? get imageUrl => throw _privateConstructorUsedError;
-  double? get rate => throw _privateConstructorUsedError;
+  String? get image => throw _privateConstructorUsedError;
+  Rating? get rating => throw _privateConstructorUsedError;
   int? get count => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -45,9 +45,11 @@ abstract class $ProductCopyWith<$Res> {
       double? price,
       String? description,
       String? category,
-      String? imageUrl,
-      double? rate,
+      String? image,
+      Rating? rating,
       int? count});
+
+  $RatingCopyWith<$Res>? get rating;
 }
 
 /// @nodoc
@@ -68,8 +70,8 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
     Object? price = freezed,
     Object? description = freezed,
     Object? category = freezed,
-    Object? imageUrl = freezed,
-    Object? rate = freezed,
+    Object? image = freezed,
+    Object? rating = freezed,
     Object? count = freezed,
   }) {
     return _then(_value.copyWith(
@@ -93,19 +95,31 @@ class _$ProductCopyWithImpl<$Res, $Val extends Product>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      rate: freezed == rate
-          ? _value.rate
-          : rate // ignore: cast_nullable_to_non_nullable
-              as double?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as Rating?,
       count: freezed == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
               as int?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $RatingCopyWith<$Res>? get rating {
+    if (_value.rating == null) {
+      return null;
+    }
+
+    return $RatingCopyWith<$Res>(_value.rating!, (value) {
+      return _then(_value.copyWith(rating: value) as $Val);
+    });
   }
 }
 
@@ -122,9 +136,12 @@ abstract class _$$_ProductCopyWith<$Res> implements $ProductCopyWith<$Res> {
       double? price,
       String? description,
       String? category,
-      String? imageUrl,
-      double? rate,
+      String? image,
+      Rating? rating,
       int? count});
+
+  @override
+  $RatingCopyWith<$Res>? get rating;
 }
 
 /// @nodoc
@@ -142,8 +159,8 @@ class __$$_ProductCopyWithImpl<$Res>
     Object? price = freezed,
     Object? description = freezed,
     Object? category = freezed,
-    Object? imageUrl = freezed,
-    Object? rate = freezed,
+    Object? image = freezed,
+    Object? rating = freezed,
     Object? count = freezed,
   }) {
     return _then(_$_Product(
@@ -167,14 +184,14 @@ class __$$_ProductCopyWithImpl<$Res>
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
               as String?,
-      imageUrl: freezed == imageUrl
-          ? _value.imageUrl
-          : imageUrl // ignore: cast_nullable_to_non_nullable
+      image: freezed == image
+          ? _value.image
+          : image // ignore: cast_nullable_to_non_nullable
               as String?,
-      rate: freezed == rate
-          ? _value.rate
-          : rate // ignore: cast_nullable_to_non_nullable
-              as double?,
+      rating: freezed == rating
+          ? _value.rating
+          : rating // ignore: cast_nullable_to_non_nullable
+              as Rating?,
       count: freezed == count
           ? _value.count
           : count // ignore: cast_nullable_to_non_nullable
@@ -192,8 +209,8 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
       required this.price,
       required this.description,
       required this.category,
-      required this.imageUrl,
-      required this.rate,
+      required this.image,
+      required this.rating,
       required this.count});
 
   factory _$_Product.fromJson(Map<String, dynamic> json) =>
@@ -210,15 +227,15 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
   @override
   final String? category;
   @override
-  final String? imageUrl;
+  final String? image;
   @override
-  final double? rate;
+  final Rating? rating;
   @override
   final int? count;
 
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'Product(id: $id, title: $title, price: $price, description: $description, category: $category, imageUrl: $imageUrl, rate: $rate, count: $count)';
+    return 'Product(id: $id, title: $title, price: $price, description: $description, category: $category, image: $image, rating: $rating, count: $count)';
   }
 
   @override
@@ -231,8 +248,8 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
       ..add(DiagnosticsProperty('price', price))
       ..add(DiagnosticsProperty('description', description))
       ..add(DiagnosticsProperty('category', category))
-      ..add(DiagnosticsProperty('imageUrl', imageUrl))
-      ..add(DiagnosticsProperty('rate', rate))
+      ..add(DiagnosticsProperty('image', image))
+      ..add(DiagnosticsProperty('rating', rating))
       ..add(DiagnosticsProperty('count', count));
   }
 
@@ -248,16 +265,15 @@ class _$_Product with DiagnosticableTreeMixin implements _Product {
                 other.description == description) &&
             (identical(other.category, category) ||
                 other.category == category) &&
-            (identical(other.imageUrl, imageUrl) ||
-                other.imageUrl == imageUrl) &&
-            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.image, image) || other.image == image) &&
+            (identical(other.rating, rating) || other.rating == rating) &&
             (identical(other.count, count) || other.count == count));
   }
 
   @JsonKey(ignore: true)
   @override
   int get hashCode => Object.hash(runtimeType, id, title, price, description,
-      category, imageUrl, rate, count);
+      category, image, rating, count);
 
   @JsonKey(ignore: true)
   @override
@@ -280,8 +296,8 @@ abstract class _Product implements Product {
       required final double? price,
       required final String? description,
       required final String? category,
-      required final String? imageUrl,
-      required final double? rate,
+      required final String? image,
+      required final Rating? rating,
       required final int? count}) = _$_Product;
 
   factory _Product.fromJson(Map<String, dynamic> json) = _$_Product.fromJson;
@@ -297,13 +313,169 @@ abstract class _Product implements Product {
   @override
   String? get category;
   @override
-  String? get imageUrl;
+  String? get image;
   @override
-  double? get rate;
+  Rating? get rating;
   @override
   int? get count;
   @override
   @JsonKey(ignore: true)
   _$$_ProductCopyWith<_$_Product> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+Rating _$RatingFromJson(Map<String, dynamic> json) {
+  return _Rating.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Rating {
+  double? get rate => throw _privateConstructorUsedError;
+  double? get count => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $RatingCopyWith<Rating> get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $RatingCopyWith<$Res> {
+  factory $RatingCopyWith(Rating value, $Res Function(Rating) then) =
+      _$RatingCopyWithImpl<$Res, Rating>;
+  @useResult
+  $Res call({double? rate, double? count});
+}
+
+/// @nodoc
+class _$RatingCopyWithImpl<$Res, $Val extends Rating>
+    implements $RatingCopyWith<$Res> {
+  _$RatingCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rate = freezed,
+    Object? count = freezed,
+  }) {
+    return _then(_value.copyWith(
+      rate: freezed == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double?,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$_RatingCopyWith<$Res> implements $RatingCopyWith<$Res> {
+  factory _$$_RatingCopyWith(_$_Rating value, $Res Function(_$_Rating) then) =
+      __$$_RatingCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({double? rate, double? count});
+}
+
+/// @nodoc
+class __$$_RatingCopyWithImpl<$Res>
+    extends _$RatingCopyWithImpl<$Res, _$_Rating>
+    implements _$$_RatingCopyWith<$Res> {
+  __$$_RatingCopyWithImpl(_$_Rating _value, $Res Function(_$_Rating) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? rate = freezed,
+    Object? count = freezed,
+  }) {
+    return _then(_$_Rating(
+      rate: freezed == rate
+          ? _value.rate
+          : rate // ignore: cast_nullable_to_non_nullable
+              as double?,
+      count: freezed == count
+          ? _value.count
+          : count // ignore: cast_nullable_to_non_nullable
+              as double?,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$_Rating with DiagnosticableTreeMixin implements _Rating {
+  const _$_Rating({required this.rate, required this.count});
+
+  factory _$_Rating.fromJson(Map<String, dynamic> json) =>
+      _$$_RatingFromJson(json);
+
+  @override
+  final double? rate;
+  @override
+  final double? count;
+
+  @override
+  String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
+    return 'Rating(rate: $rate, count: $count)';
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties
+      ..add(DiagnosticsProperty('type', 'Rating'))
+      ..add(DiagnosticsProperty('rate', rate))
+      ..add(DiagnosticsProperty('count', count));
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$_Rating &&
+            (identical(other.rate, rate) || other.rate == rate) &&
+            (identical(other.count, count) || other.count == count));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(runtimeType, rate, count);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$_RatingCopyWith<_$_Rating> get copyWith =>
+      __$$_RatingCopyWithImpl<_$_Rating>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$_RatingToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Rating implements Rating {
+  const factory _Rating(
+      {required final double? rate, required final double? count}) = _$_Rating;
+
+  factory _Rating.fromJson(Map<String, dynamic> json) = _$_Rating.fromJson;
+
+  @override
+  double? get rate;
+  @override
+  double? get count;
+  @override
+  @JsonKey(ignore: true)
+  _$$_RatingCopyWith<_$_Rating> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:fake_store/home/views/home_view.dart';
-import 'package:fake_store/shared/utils/color_primary_value.dart';
+import 'home/views/home_view.dart';
+import 'shared/utils/color_primary_value.dart';
 import 'auth/views/auth_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       initialRoute: 'auth',
       routes: {
         'auth': (context) => const AuthView(),
-        'home': (context) => const HomePage(),
+        'home': (context) => HomeView(),
       },
     );
   }
