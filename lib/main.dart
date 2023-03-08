@@ -42,7 +42,9 @@ class MyApp extends StatelessWidget {
       ),
       initialRoute: 'auth',
       routes: {
-        'auth': (context) => const AuthView(),
+        'auth': (context) => const AuthView(
+              key: Key('auth_view'),
+            ),
         'home': (context) => const HomeView(
               key: Key('home_view'),
             ),

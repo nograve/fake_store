@@ -77,6 +77,7 @@ class _HomeViewState extends State<HomeView> {
                     child: Padding(
                       padding: const EdgeInsets.all(16.0),
                       child: GridView.builder(
+                        key: const Key('products_list'),
                         gridDelegate:
                             const SliverGridDelegateWithMaxCrossAxisExtent(
                           maxCrossAxisExtent: 200.0,
