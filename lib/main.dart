@@ -1,4 +1,8 @@
 import 'package:dio/dio.dart';
+import 'package:fake_store/auth/repositories/auth_repo.dart';
+import 'package:fake_store/auth/viewmodels/auth_viewmodel.dart';
+import 'package:fake_store/home/repositories/home_repo.dart';
+import 'package:fake_store/home/viewmodels/home_viewmodel.dart';
 import 'home/views/home_view.dart';
 import 'shared/utils/color_primary_value.dart';
 import 'auth/views/auth_view.dart';
@@ -12,6 +16,10 @@ import 'shared/services/fake_store_client.dart';
 void main() {
   final dio = Dio();
   GetIt.instance.registerSingleton<FakeStoreClient>(FakeStoreClient(dio));
+  GetIt.instance
+      .registerSingleton<AuthViewModel>(AuthViewModel(repo: AuthRepoImpl()));
+  GetIt.instance.registerSingleton<HomeViewModel>(
+      HomeViewModel(homeRepo: HomeRepoImpl()));
   runApp(const MyApp());
 }
 

@@ -1,7 +1,8 @@
+import 'package:get_it/get_it.dart';
+
 import '../components/home_title.dart';
 import '../components/home_title_description.dart';
 import '../components/product_list_tile.dart';
-import '../repositories/home_repo.dart';
 import '../viewmodels/home_viewmodel.dart';
 import 'package:flutter/material.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
@@ -18,8 +19,6 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-  final HomeViewModel _homeViewModel = HomeViewModel(homeRepo: HomeRepoImpl());
-
   final RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
@@ -69,7 +68,7 @@ class _HomeViewState extends State<HomeView> {
               child: HomeTitleDescription(),
             ),
             FutureBuilder(
-              future: _homeViewModel.getProducts(),
+              future: GetIt.instance<HomeViewModel>().homeRepo.getProducts(),
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   final List<Product> products = snapshot.data!;

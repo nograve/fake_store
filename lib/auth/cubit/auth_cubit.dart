@@ -1,5 +1,5 @@
-import 'package:fake_store/auth/repositories/auth_repo.dart';
 import 'package:fake_store/auth/viewmodels/auth_viewmodel.dart';
+import 'package:get_it/get_it.dart';
 
 import '../models/token.dart';
 
@@ -13,12 +13,11 @@ part 'auth_cubit.freezed.dart';
 class AuthCubit extends Cubit<AuthState> {
   AuthCubit() : super(const AuthState.initial());
 
-  final AuthViewModel _authViewModel = AuthViewModel(repo: AuthRepoImpl());
-
   Future<void> auth(UserCredentials userCredentials) async {
     emit(const AuthState.initial());
     try {
-      final Token? token = await _authViewModel.auth(userCredentials);
+      final Token? token =
+          await GetIt.instance<AuthViewModel>().repo.auth(userCredentials);
       if (token != null) {
         emit(const AuthState.success());
       } else {

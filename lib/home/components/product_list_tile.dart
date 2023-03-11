@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 
 import '../models/product.dart';
 
-// TODO: Implement wishlist
-
 class ProductListTile extends StatelessWidget {
   const ProductListTile({
     super.key,
